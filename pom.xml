@@ -14,11 +14,15 @@
     </properties>
 
    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>9.0.0</version>
-    </dependency>
+     <dependencies>
+        <!-- MySQL Connector Java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version> <!-- Verifica que la versión sea la más reciente y correcta -->
+        </dependency>
+    </dependencies>
+
 
 
 </project>
