@@ -2,19 +2,43 @@ package User.infrastructure.in;
 
 import java.util.Scanner;
 
-import User.application.CreateUserUseCase;
+import User.application.UserUseCase;
 import User.domain.entity.User;
 
 public class UserController {
-    private final CreateUserUseCase createUserUseCase;
+    private final UserUseCase userUseCase;
 
-    public UserController(CreateUserUseCase createUserUseCase) {
-        this.createUserUseCase = createUserUseCase;
+    public UserController(UserUseCase userUseCase) {
+        this.userUseCase = userUseCase;
     }
 
-    public void start() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Digite el id del usuario: ");
+    public void loginUser(){
+        Scanner scanner = new Scanner(System.in);
+        try {
+
+            System.out.println("Digite el nombre de usuario: ");
+            String username = scanner.nextLine();
+
+            System.out.println("Digite la contraseña: ");
+            String password = scanner.nextLine();
+
+            User user = userUseCase.findUser(username, password);
+            if (user != null) {
+                System.out.println("Usuario si existe");
+            } else {
+                System.out.println("No se encontró el usuario");
+            }
+        } catch (Exception e ){
+            System.out.println("Excepcion de loginUser");
+        }
+
+    }
+
+    public void createUser() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+
+            System.out.println("Digite el id del Usuario: ");
             Long idUser = scanner.nextLong();
             scanner.nextLine();
 
@@ -24,15 +48,12 @@ public class UserController {
             System.out.println("Digite el email: ");
             String email = scanner.nextLine();
 
-            System.out.println("Digite una contraseña para el usuario: ");
+            System.out.println("Cree una contraseña");
             String password = scanner.nextLine();
 
-            System.out.println("Digite el id del Rol que llevará el usuario");
-            System.out.println("1.SuperAdmin");
-            System.out.println("2.AdminSistema");
-            System.out.println("3.Agente de ventas");
-            System.out.println("4.Tecnico Mantenimiento");
+            System.out.println("Digite el id del Rol para el usuario: ");
             int idRole = scanner.nextInt();
+            scanner.nextLine();
 
             User user = new User();
             user.setIdUser(idUser);
@@ -41,8 +62,9 @@ public class UserController {
             user.setPassword(password);
             user.setIdRole(idRole);
 
-
-            createUserUseCase.execute(user);
+            userUseCase.createUser(user);
+        } catch (Exception e) {
+            System.out.println("Problemas en Crear usuario");
         }
 
         System.out.println("Usuario creado con exito!");

@@ -4,5 +4,6 @@ import User.domain.entity.User;
 
 public interface UserService {
     void createUser(User user);
-    User findUserById(Long idUser);
+    User findUser(String username, String password);
+    void loginUser();
 }

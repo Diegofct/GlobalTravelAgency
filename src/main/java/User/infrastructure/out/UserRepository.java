@@ -41,20 +41,23 @@ public class UserRepository implements UserService {
     }
 
     @Override
-    public User findUserById(Long idUser) {
-        String sql = "SELECT idUser, username, email FROM User WHERE idUser = ?";
+    public User findUser(String username, String password) {
+        String sql = "SELECT  idUser, username, email, password, idRole FROM User WHERE username = ? AND password = ?";
         User user = null;
 
         try (Connection connection = DatabaseConfig.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setLong(1, idUser);
+            statement.setString(1, username);
+            statement.setString(2, password);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     user = new User();
                     user.setIdUser(resultSet.getLong("idUser"));
                     user.setUsername(resultSet.getString("username"));
                     user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setIdRole(resultSet.getInt("idRole"));
                 }
             }
 
@@ -63,6 +66,12 @@ public class UserRepository implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public void loginUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'loginUser'");
     }
 
 }
