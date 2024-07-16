@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import User.domain.entity.User;
-import User.domain.service.UserService;
-import DBConnection.config.DatabaseConfig;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import DBConnection.config.DatabaseConfig;
+import User.domain.entity.Permission;
+import User.domain.entity.User;
+import User.domain.service.PermissionService;
+import User.domain.service.UserService;
 
 public class UserRepository implements UserService {
 
@@ -42,31 +45,36 @@ public class UserRepository implements UserService {
 
     @Override
     public User findUser(String username, String password) {
-        String sql = "SELECT  idUser, username, email, password, idRole FROM User WHERE username = ? AND password = ?";
-        User user = null;
+    String sql = "SELECT idUser, username, email, password, idRole FROM User WHERE username = ? AND password = ?";
+    User user = null;
 
-        try (Connection connection = DatabaseConfig.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+    try (Connection connection = DatabaseConfig.getConnection();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, username);
-            statement.setString(2, password);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    user = new User();
-                    user.setIdUser(resultSet.getLong("idUser"));
-                    user.setUsername(resultSet.getString("username"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setIdRole(resultSet.getInt("idRole"));
-                }
+        statement.setString(1, username);
+        statement.setString(2, password);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                user = new User();
+                user.setIdUser(resultSet.getLong("idUser"));
+                user.setUsername(resultSet.getString("username"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setIdRole(resultSet.getInt("idRole"));
+
+                // Cargar permisos
+                PermissionService permissionService = new PermissionRepository();
+                List<Permission> permissions = permissionService.getPermissionsByRole(user.getIdRole());
+                user.setPermissions(permissions);
             }
-
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error finding user by ID", e);
         }
 
-        return user;
+    } catch (SQLException e) {
+        LOGGER.log(Level.SEVERE, "Error finding user by ID", e);
     }
+
+    return user;
+}
 
     @Override
     public void loginUser() {

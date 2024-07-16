@@ -1,21 +1,25 @@
 package User.domain.entity;
 
+import java.util.List;
+
 public class User {
     private Long idUser;
     private String username;
     private String email;
     private String password;
     private int idRole;
+    private List<Permission> permissions;
 
     public User() {
     }
 
-    public User(Long idUser, String username, String email, String password, int idRole) {
+    public User(Long idUser, String username, String email, String password, int idRole, List<Permission> permissions) {
         this.idUser = idUser;
         this.username = username;
         this.email = email;
         this.password = password;
         this.idRole = idRole;
+        this.permissions = permissions;
     }
 
     public Long getIdUser() {
@@ -47,6 +51,14 @@ public class User {
     }
     public void setIdRole(int idRole) {
         this.idRole = idRole;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     
