@@ -1,6 +1,6 @@
 USE railway;
 
-INSERT INTO Rol VALUES
+INSERT INTO Role VALUES
 (1,"Admin"),
 (2,"Agente Ventas"),
 (3,"Tecnico Mantenimiento"),
