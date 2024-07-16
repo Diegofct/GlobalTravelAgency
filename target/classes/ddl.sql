@@ -26,12 +26,13 @@ CREATE TABLE Permission (
 );
 
 CREATE TABLE RoleHasPermission (
-    idRoleHasPermission INT PRIMARY KEY,
     idRole INT,
     idPermission INT,
+    PRIMARY KEY (idRole, idPermission),
     FOREIGN KEY (idRole) REFERENCES Role(idRole),
     FOREIGN KEY (idPermission) REFERENCES Permission(idPermission)
 );
+
 
 -- Airport Details
 CREATE TABLE Country (

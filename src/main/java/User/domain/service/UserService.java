@@ -1,6 +1,6 @@
-package domain.service;
+package User.domain.service;
 
-import domain.entity.User;
+import User.domain.entity.User;
 
 public interface UserService {
     void createUser(User user);

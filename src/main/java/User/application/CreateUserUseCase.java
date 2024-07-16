@@ -1,7 +1,7 @@
-package application;
+package User.application;
 
-import domain.entity.User;
-import domain.service.UserService;
+import User.domain.entity.User;
+import User.domain.service.UserService;
 
 public class CreateUserUseCase {
     private final UserService userService;

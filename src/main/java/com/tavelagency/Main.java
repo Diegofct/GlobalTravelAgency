@@ -1,12 +1,13 @@
 package com.tavelagency;
 
-import application.CreateUserUseCase;
-import domain.service.UserService;
-import infrastructure.in.UserController;
-import infrastructure.out.UserRepository;
+import User.application.CreateUserUseCase;
+import User.domain.service.UserService;
+import User.infrastructure.in.UserController;
+import User.infrastructure.out.UserRepository;
 
 public class Main {
     public static void main(String[] args) {
+        
         UserService userService = new UserRepository();
         CreateUserUseCase createUserUseCase = new CreateUserUseCase(userService);
         UserController consoleAdapter = new UserController(createUserUseCase);

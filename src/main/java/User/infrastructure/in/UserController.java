@@ -1,9 +1,9 @@
-package infrastructure.in;
+package User.infrastructure.in;
 
 import java.util.Scanner;
 
-import application.CreateUserUseCase;
-import domain.entity.User;
+import User.application.CreateUserUseCase;
+import User.domain.entity.User;
 
 public class UserController {
     private final CreateUserUseCase createUserUseCase;

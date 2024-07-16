@@ -1,4 +1,4 @@
-package domain.entity;
+package User.domain.entity;
 
 public class User {
     private Long idUser;

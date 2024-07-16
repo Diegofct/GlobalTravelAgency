@@ -1,13 +1,13 @@
-package infrastructure.out;
+package User.infrastructure.out;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import domain.entity.User;
-import domain.service.UserService;
-import infrastructure.config.DatabaseConfig;
+import User.domain.entity.User;
+import User.domain.service.UserService;
+import DBConnection.config.DatabaseConfig;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
