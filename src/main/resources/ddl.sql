@@ -67,12 +67,13 @@ CREATE TABLE Airline (
 );
 
 CREATE TABLE AirportHasAirline (
-    idAirportHasAirline INT PRIMARY KEY,
     idAirport VARCHAR(5),
     idAirline INT,
+    PRIMARY KEY (idAirport, idAirline),
     FOREIGN KEY (idAirport) REFERENCES Airport(idAirport),
     FOREIGN KEY (idAirline) REFERENCES Airline(idAirline)
 );
+
 
 -- Employee Details
 CREATE TABLE Employee (
