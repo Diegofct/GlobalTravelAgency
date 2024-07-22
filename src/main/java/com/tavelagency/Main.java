@@ -1,6 +1,6 @@
 package com.tavelagency;
 
-import Menus.MainMenu;
+import Menu.MainMenu;
 
 public class Main {
     public static void main(String[] args) {
