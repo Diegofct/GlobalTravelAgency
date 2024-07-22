@@ -2,6 +2,15 @@ package User.infrastructure.in;
 
 import java.util.Scanner;
 
+import Airport.application.CreateAirportUseCase;
+import Airport.application.DeleteAirportUseCase;
+import Airport.application.GetAirportUseCase;
+import Airport.application.GetAllAirportsUseCase;
+import Airport.application.UpdateAirportUseCase;
+import Airport.domain.service.AirportService;
+import Airport.infrastructure.in.AirportController;
+import Airport.infrastructure.out.AirportRepository;
+import Menu.MainMenu;
 import User.application.UserUseCase;
 import User.domain.entity.Permission;
 import User.domain.entity.User;
@@ -139,6 +148,18 @@ public class UserController {
                 case 7:
                     System.out.println("Registrar Avion");
                     // registerCustomer();
+                    break;
+                case 10:
+                    System.out.println("Registrar Aeropuerto: ");
+                    AirportService airportService = new AirportRepository();
+                    CreateAirportUseCase createAirportUseCase = new CreateAirportUseCase(airportService);
+                    DeleteAirportUseCase deleteAirportUseCase = new DeleteAirportUseCase(airportService);
+                    GetAirportUseCase getAirportUseCase = new GetAirportUseCase(airportService);
+                    GetAllAirportsUseCase getAllAirportsUseCase = new GetAllAirportsUseCase(airportService);
+                    UpdateAirportUseCase updateAirportUseCase = new UpdateAirportUseCase(airportService);
+                    AirportController airportController = new AirportController(createAirportUseCase, deleteAirportUseCase, getAirportUseCase, getAllAirportsUseCase, updateAirportUseCase);
+                    MainMenu.limpiarPantalla();
+                    airportController.createAirport();
                     break;
                 // Agrega los demás casos según los permisos necesarios
                 default:
