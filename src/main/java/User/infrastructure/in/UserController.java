@@ -11,6 +11,14 @@ import Airport.domain.service.AirportService;
 import Airport.infrastructure.in.AirportController;
 import Airport.infrastructure.out.AirportRepository;
 import Menu.MainMenu;
+import Plane.application.CreatePlaneUseCase;
+import Plane.application.DeletePlaneUseCase;
+import Plane.application.FindPlaneUseCase;
+import Plane.application.ListPlaneUseCase;
+import Plane.application.UpdatePlaneUseCase;
+import Plane.domain.service.PlaneService;
+import Plane.infrastructure.in.PlaneController;
+import Plane.infrastructure.out.PlaneRepository;
 import User.application.UserUseCase;
 import User.domain.entity.Permission;
 import User.domain.entity.User;
@@ -123,7 +131,15 @@ public class UserController {
             switch (selectedPermission.getIdPermission()) {
                 case 1:
                     System.out.println("Registrar Avion");
-                    // registerPlane();
+                    PlaneService planeService = new PlaneRepository();
+                    CreatePlaneUseCase createPlaneUseCase = new CreatePlaneUseCase(planeService);
+                    DeletePlaneUseCase deletePlaneUseCase = new DeletePlaneUseCase(planeService);
+                    FindPlaneUseCase findPlaneUseCase = new FindPlaneUseCase(planeService);
+                    ListPlaneUseCase listPlaneUseCase = new ListPlaneUseCase(planeService);
+                    UpdatePlaneUseCase updatePlaneUseCase = new UpdatePlaneUseCase(planeService);
+                    PlaneController planeController = new PlaneController(createPlaneUseCase, deletePlaneUseCase, findPlaneUseCase, listPlaneUseCase, updatePlaneUseCase);
+                    MainMenu.limpiarPantalla();
+                    planeController.createPlane();
                     break;
                 case 2:
                     System.out.println("Registrar Avion");

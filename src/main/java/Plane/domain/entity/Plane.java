@@ -25,11 +25,13 @@ public class Plane {
         this.idModel = idModel;
         this.idStatus = idStatus;
     }
-
+        
     //Getters and setters
     public int getIdPlane() {
         return idPlane;
     }
+
+
 
     public void setIdPlane(int idPlane) {
         this.idPlane = idPlane;
@@ -55,8 +57,8 @@ public class Plane {
         return fabricationDate;
     }
 
-    public void setFabricationDate(Date fabricationDate) {
-        this.fabricationDate = fabricationDate;
+    public void setFabricationDate(Date fabricationDate2) {
+        this.fabricationDate = fabricationDate2;
     }
 
     public int getIdModel() {

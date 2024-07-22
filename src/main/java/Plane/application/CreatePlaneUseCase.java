@@ -18,4 +18,9 @@ public class CreatePlaneUseCase {
         // Call the createPlane method of the PlaneService to create the plane
         PlaneService.createPlane(plane);
     }
+
+    public void createPlane(Plane plane) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createPlane'");
+    }
 }
