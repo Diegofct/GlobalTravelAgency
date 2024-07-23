@@ -10,6 +10,13 @@ import Airport.application.UpdateAirportUseCase;
 import Airport.domain.service.AirportService;
 import Airport.infrastructure.in.AirportController;
 import Airport.infrastructure.out.AirportRepository;
+import DocumentType.application.CreateDocumentTypeUseCase;
+import DocumentType.application.DeleteDocumentTypeUseCase;
+import DocumentType.application.ReadDocumentTypeUseCase;
+import DocumentType.application.UpdateDocumentTypeUseCase;
+import DocumentType.domain.service.DocumentTypeService;
+import DocumentType.infrastructure.in.DocumentTypeController;
+import DocumentType.infrastructure.out.DocumentTypeRepository;
 import Menu.MainMenu;
 import Plane.application.CreatePlaneUseCase;
 import Plane.application.DeletePlaneUseCase;
@@ -111,6 +118,7 @@ public class UserController {
     
             if (opcion == 0) {
                 exit = true;
+                MainMenu.limpiarPantalla();
             } else {
                 // Manejar las opciones seleccionadas
                 handleUserOption(opcion, user);
@@ -176,6 +184,17 @@ public class UserController {
                     AirportController airportController = new AirportController(createAirportUseCase, deleteAirportUseCase, getAirportUseCase, getAllAirportsUseCase, updateAirportUseCase);
                     MainMenu.limpiarPantalla();
                     airportController.createAirport();
+                    break;
+                case 34:
+                    System.out.println("Registrar el tipo de Documento: ");
+                    DocumentTypeService documentTypeService = new DocumentTypeRepository();
+                    CreateDocumentTypeUseCase createDocumentTypeUseCase = new CreateDocumentTypeUseCase(documentTypeService);
+                    DeleteDocumentTypeUseCase deleteDocumentTypeUseCase = new DeleteDocumentTypeUseCase(documentTypeService);
+                    ReadDocumentTypeUseCase readDocumentTypeUseCase = new ReadDocumentTypeUseCase(documentTypeService);
+                    UpdateDocumentTypeUseCase updateDocumentTypeUseCase = new UpdateDocumentTypeUseCase(documentTypeService);
+                    DocumentTypeController documentTypeController = new DocumentTypeController(createDocumentTypeUseCase, deleteDocumentTypeUseCase, readDocumentTypeUseCase, updateDocumentTypeUseCase);
+                    MainMenu.limpiarPantalla();
+                    documentTypeController.createDocumentType();
                     break;
                 // Agrega los demás casos según los permisos necesarios
                 default:
