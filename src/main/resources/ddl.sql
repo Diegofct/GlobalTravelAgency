@@ -166,18 +166,18 @@ CREATE TABLE TripCrew (
 );
 
 -- Customers Details
+CREATE TABLE DocumentType (
+    idDocumentType INT PRIMARY KEY,
+    name VARCHAR(45) NOT NULL,
+    documentNumber VARCHAR(40) NOT NULL
+);
+
 CREATE TABLE Customer (
     idCustomer INT PRIMARY KEY,
     name VARCHAR(45) NOT NULL,
     age INT,
     idDocumentType INT,
     FOREIGN KEY (idDocumentType) REFERENCES DocumentType(idDocumentType)
-);
-
-CREATE TABLE DocumentType (
-    idDocumentType INT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL,
-    documentNumber VARCHAR(40) NOT NULL
 );
 
 -- Plane Details
