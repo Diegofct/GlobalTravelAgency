@@ -69,7 +69,7 @@ public class PlaneController {
             createPlaneUseCase.createPlane(plane);
 
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println("Error al crear el avión");
         }
         System.out.println("Avión creado exitosamente.");
     }
