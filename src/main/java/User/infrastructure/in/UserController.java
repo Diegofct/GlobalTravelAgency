@@ -22,9 +22,13 @@ import DocumentType.application.UpdateDocumentTypeUseCase;
 import DocumentType.domain.service.DocumentTypeService;
 import DocumentType.infrastructure.in.DocumentTypeController;
 import DocumentType.infrastructure.out.DocumentTypeRepository;
-/*import Maintenance.application.DeleteMaintenanceUseCase;
+import Maintenance.application.DeleteMaintenanceUseCase;
+import Maintenance.application.ReadMaintenanceUseCase;
 import Maintenance.application.RegisterMaintenanceUseCase;
-import Maintenance.domain.service.MaintenanceService;*/
+import Maintenance.application.UpdateMaintenanceUseCase;
+import Maintenance.domain.service.MaintenanceService;
+import Maintenance.infrastructure.in.MaintenanceController;
+import Maintenance.infrastructure.out.MaintenanceRepository;
 import Menu.MainMenu;
 import Plane.application.CreatePlaneUseCase;
 import Plane.application.DeletePlaneUseCase;
@@ -165,14 +169,17 @@ public class UserController {
                     System.out.println("Registrar Avion");
                     // createFlightReservation();
                     break;
-                /*case 4:
-                    System.out.println("Registrar revisión de Mantenimiento");
+                case 4:
+                    System.out.println("Registrar Revisión de Mantenimiento");
                     MaintenanceService maintenanceService = new MaintenanceRepository();
                     RegisterMaintenanceUseCase registerMaintenanceUseCase = new RegisterMaintenanceUseCase(maintenanceService);
                     DeleteMaintenanceUseCase deleteMaintenanceUseCase = new DeleteMaintenanceUseCase(maintenanceService);
-                    
-                    
-                    break; */
+                    ReadMaintenanceUseCase readMaintenanceUseCase = new ReadMaintenanceUseCase(maintenanceService);
+                    UpdateMaintenanceUseCase updateMaintenanceUseCase = new UpdateMaintenanceUseCase(maintenanceService);
+                    MaintenanceController maintenanceController = new MaintenanceController(registerMaintenanceUseCase, deleteMaintenanceUseCase, readMaintenanceUseCase, updateMaintenanceUseCase);
+                    MainMenu.limpiarPantalla();
+                    maintenanceController.registerMaintenance();
+                    break;
                 case 5:
                     System.out.println("Registrar Avion");
                     // viewCustomerInformation();
@@ -202,6 +209,43 @@ public class UserController {
                     MainMenu.limpiarPantalla();
                     airportController.createAirport();
                     break;
+                case 12:
+                    System.out.println("Consultar Revisión de Mantenimiento");
+                    MaintenanceService maintenanceService2 = new MaintenanceRepository();
+                    RegisterMaintenanceUseCase registerMaintenanceUseCase2 = new RegisterMaintenanceUseCase(maintenanceService2);
+                    DeleteMaintenanceUseCase deleteMaintenanceUseCase2 = new DeleteMaintenanceUseCase(maintenanceService2);
+                    ReadMaintenanceUseCase readMaintenanceUseCase2 = new ReadMaintenanceUseCase(maintenanceService2);
+                    UpdateMaintenanceUseCase updateMaintenanceUseCase2 = new UpdateMaintenanceUseCase(maintenanceService2);
+                    MaintenanceController maintenanceController2 = new MaintenanceController(registerMaintenanceUseCase2, deleteMaintenanceUseCase2, readMaintenanceUseCase2, updateMaintenanceUseCase2);
+                    MainMenu.limpiarPantalla();
+                    maintenanceController2.readMaintenance();
+                    break;
+                
+                case 24:
+                    System.out.println("Actualizar Revisión de Mantenimiento");
+                    MaintenanceService maintenanceService3 = new MaintenanceRepository();
+                    RegisterMaintenanceUseCase registerMaintenanceUseCase3 = new RegisterMaintenanceUseCase(maintenanceService3);
+                    DeleteMaintenanceUseCase deleteMaintenanceUseCase3 = new DeleteMaintenanceUseCase(maintenanceService3);
+                    ReadMaintenanceUseCase readMaintenanceUseCase3 = new ReadMaintenanceUseCase(maintenanceService3);
+                    UpdateMaintenanceUseCase updateMaintenanceUseCase3 = new UpdateMaintenanceUseCase(maintenanceService3);
+                    MaintenanceController maintenanceController3 = new MaintenanceController(registerMaintenanceUseCase3, deleteMaintenanceUseCase3, readMaintenanceUseCase3, updateMaintenanceUseCase3);
+                    MainMenu.limpiarPantalla();
+                    maintenanceController3.updateMaintenance();
+                    break;
+
+                case 25:
+                    System.out.println("Eliminar Revisión de Mantenimiento");
+                    MaintenanceService maintenanceService4 = new MaintenanceRepository();
+                    RegisterMaintenanceUseCase registerMaintenanceUseCase4 = new RegisterMaintenanceUseCase(maintenanceService4);
+                    DeleteMaintenanceUseCase deleteMaintenanceUseCase4 = new DeleteMaintenanceUseCase(maintenanceService4);
+                    ReadMaintenanceUseCase readMaintenanceUseCase4 = new ReadMaintenanceUseCase(maintenanceService4);
+                    UpdateMaintenanceUseCase updateMaintenanceUseCase4 = new UpdateMaintenanceUseCase(maintenanceService4);
+                    MaintenanceController maintenanceController4 = new MaintenanceController(registerMaintenanceUseCase4, deleteMaintenanceUseCase4, readMaintenanceUseCase4, updateMaintenanceUseCase4);
+                    MainMenu.limpiarPantalla();
+                    maintenanceController4.deleteMaintenance();
+                    break;
+
+
                 case 34:
                     System.out.println("Registrar el tipo de Documento: ");
                     DocumentTypeService documentTypeService = new DocumentTypeRepository();
@@ -222,4 +266,6 @@ public class UserController {
             System.out.println("No tiene permiso para realizar esta acción.");
         }
     }
+
+
 }

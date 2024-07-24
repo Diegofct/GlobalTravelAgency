@@ -1,6 +1,5 @@
 package Maintenance.application;
 
-import Maintenance.domain.entity.Maintenance;
 import Maintenance.domain.service.MaintenanceService;
 
 public class DeleteMaintenanceUseCase {
@@ -10,12 +9,7 @@ public class DeleteMaintenanceUseCase {
         this.maintenanceService = maintenanceService;
     }
 
-    public void execute(int idRevision){
+    public void deleteMaintenance(int idRevision){
         maintenanceService.deleteMaintenance(idRevision);
-    }
-
-    public void deleteIdRevision(Maintenance maintenance) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteIdRevision'");
     }
 }

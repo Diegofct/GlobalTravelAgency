@@ -1,4 +1,4 @@
-/*package Maintenance.infrastructure.in;
+package Maintenance.infrastructure.in;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import Maintenance.application.DeleteMaintenanceUseCase;
-import Maintenance.application.ListPlainMaintenanceUseCase;
 import Maintenance.application.ReadMaintenanceUseCase;
 import Maintenance.application.RegisterMaintenanceUseCase;
 import Maintenance.application.UpdateMaintenanceUseCase;
@@ -17,16 +16,17 @@ import Maintenance.domain.entity.Maintenance;
 public class MaintenanceController {
     private final RegisterMaintenanceUseCase registerMaintenanceUseCase;
     private final DeleteMaintenanceUseCase deleteMaintenanceUseCase;
-    private final ListPlainMaintenanceUseCase listPlainMaintenanceUseCase;
+    private final ReadMaintenanceUseCase readMaintenanceUseCase;
     private final UpdateMaintenanceUseCase updateMaintenanceUseCase;
 
-    public MaintenanceController(RegisterMaintenanceUseCase registerMaintenanceUseCase, 
-            DeleteMaintenanceUseCase deleteMaintenanceUseCase, 
-            ListPlainMaintenanceUseCase listPlainMaintenanceUseCase, 
+   
+
+    public MaintenanceController(RegisterMaintenanceUseCase registerMaintenanceUseCase,
+            DeleteMaintenanceUseCase deleteMaintenanceUseCase, ReadMaintenanceUseCase readMaintenanceUseCase,
             UpdateMaintenanceUseCase updateMaintenanceUseCase) {
         this.registerMaintenanceUseCase = registerMaintenanceUseCase;
         this.deleteMaintenanceUseCase = deleteMaintenanceUseCase;
-        this.listPlainMaintenanceUseCase = listPlainMaintenanceUseCase;
+        this.readMaintenanceUseCase = readMaintenanceUseCase;
         this.updateMaintenanceUseCase = updateMaintenanceUseCase;
     }
 
@@ -69,28 +69,10 @@ public class MaintenanceController {
             Maintenance maintenance = new Maintenance();
             maintenance.setIdRevision(idRevision);
 
-            deleteMaintenanceUseCase.deleteIdRevision(maintenance);
+            deleteMaintenanceUseCase.deleteMaintenance(idRevision);
             System.out.println("Mantenimiento eliminado con éxito! ");
         } catch (Exception m) {
             System.out.println("Error al eliminar el mantenimiento");
-        }
-    }
-
-    public void listPlainMaintenance() {
-        try {
-            List<Maintenance> maintenances = ReadMaintenanceUseCase.ReadMaintenanceUseCase();
-            if (maintenances != null) {
-                System.out.println("Lista de mantenimientos:");
-                for (Maintenance maintenance : maintenances) {
-                    System.out.println("ID: " + maintenance.getIdRevision() + 
-                                       ", Fecha: " + maintenance.getRevisionDate() + 
-                                       ", Avión ID: " + maintenance.getIdPlane());
-                }
-            } else {
-                System.out.println("No hay mantenimientos registrados");
-            }
-        } catch (Exception e) {
-            System.out.println("Error al listar los mantenimientos: " + e.getMessage());
         }
     }
 
@@ -122,6 +104,25 @@ public class MaintenanceController {
             System.out.println("Error al actualizar el mantenimiento: " + e.getMessage());
         }
     }
-}
 
-*/
+    public void readMaintenance() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Ingrese el ID del mantenimiento que desea consultar:");
+            int idRevision = scanner.nextInt();
+            scanner.nextLine();
+
+            Maintenance maintenance = readMaintenanceUseCase.readMaintenance(idRevision);
+            if (maintenance != null) {
+                System.out.println("ID: " + maintenance.getIdRevision() +
+                                   ", Fecha: " + maintenance.getRevisionDate() +
+                                   ", Avión ID: " + maintenance.getIdPlane());
+            } else {
+                System.out.println("Mantenimiento no encontrado.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al consultar el mantenimiento: " + e.getMessage());
+        }
+    }
+    
+}

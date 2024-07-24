@@ -1,18 +1,17 @@
-/*package Maintenance.infrastructure.out;
+package Maintenance.infrastructure.out;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import DBConnection.config.DatabaseConfig;
 import Maintenance.domain.entity.Maintenance;
 import Maintenance.domain.service.MaintenanceService;
 
 public class MaintenanceRepository implements MaintenanceService {
+     
 
     @Override
     public void registerMaintenance(Maintenance maintenance) {
@@ -53,54 +52,27 @@ public class MaintenanceRepository implements MaintenanceService {
             dm.printStackTrace();
         }
     }
-}
-    /*
-    @Override
-    public List<Maintenance> getAllMaintenances() {
-        String sql = "SELECT * FROM Revision";
-        List<Maintenance> maintenanceList = new ArrayList<>();
-
-        try (Connection connection = DatabaseConfig.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                Maintenance maintenance = new Maintenance();
-                maintenance.setIdPlane(resultSet.getInt("idPlane"));
-                maintenance.setRevisionDate(resultSet.getDate("revisionDate"));
-                maintenance.setIdRevision(resultSet.getInt("idRevision"));
-                maintenanceList.add(maintenance);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return maintenanceList;
-    }
-}
 
     @Override
-    public List<Maintenance> listMaintenance(Maintenance maintenance) {
-        String sql = "SELECT * FROM Revision WHERE idPlane = ? AND revisionDate = ? AND idRevision = ?";
-        List<Maintenance> maintenanceList = new ArrayList<>();
+    public Maintenance readMaintenance(int idRevision) {
+        String sql = "SELECT * FROM Revision WHERE idRevision = ?";
+        Maintenance maintenance = null;
         try (Connection connection = DatabaseConfig.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, maintenance.getIdPlane());
-            statement.setDate(2, (Date) maintenance.getRevisionDate());
-            statement.setInt(3, maintenance.getIdRevision());
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Maintenance m = new Maintenance();
-                m.setIdPlane(resultSet.getInt("idPlane"));
-                m.setRevisionDate(resultSet.getDate("revisionDate"));
-                m.setIdRevision(resultSet.getInt("idRevision"));
-                maintenanceList.add(m);
+
+            statement.setInt(1, idRevision);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    maintenance = new Maintenance();
+                    maintenance.setIdRevision(rs.getInt("idRevision"));
+                    maintenance.setRevisionDate(rs.getDate("revisionDate"));
+                    maintenance.setIdPlane(rs.getInt("idPlane"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return maintenanceList;
+        return maintenance;   
     }
-}
 
- */
+}
