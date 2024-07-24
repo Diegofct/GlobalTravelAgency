@@ -10,6 +10,11 @@ import Airport.application.UpdateAirportUseCase;
 import Airport.domain.service.AirportService;
 import Airport.infrastructure.in.AirportController;
 import Airport.infrastructure.out.AirportRepository;
+import Customer.application.CreateCustomerUseCase;
+import Customer.application.UpdateCustomerUseCase;
+import Customer.domain.service.CustomerService;
+import Customer.infrastructure.in.CustomerController;
+import Customer.infrastructure.out.CustomerRepository;
 import DocumentType.application.CreateDocumentTypeUseCase;
 import DocumentType.application.DeleteDocumentTypeUseCase;
 import DocumentType.application.ReadDocumentTypeUseCase;
@@ -170,8 +175,13 @@ public class UserController {
                     // viewFlightReservation();
                     break;
                 case 7:
-                    System.out.println("Registrar Avion");
-                    // registerCustomer();
+                    System.out.println("Registrar Cliente");
+                    CustomerService customerService = new CustomerRepository();
+                    CreateCustomerUseCase createCustomerUseCase = new CreateCustomerUseCase(customerService);
+                    UpdateCustomerUseCase updateCustomerUseCase = new UpdateCustomerUseCase(customerService);
+                    CustomerController customerController = new CustomerController(createCustomerUseCase, updateCustomerUseCase);
+                    MainMenu.limpiarPantalla();
+                    customerController.createCustomer();
                     break;
                 case 10:
                     System.out.println("Registrar Aeropuerto: ");
