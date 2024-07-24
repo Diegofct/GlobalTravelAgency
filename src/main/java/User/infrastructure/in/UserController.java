@@ -22,6 +22,9 @@ import DocumentType.application.UpdateDocumentTypeUseCase;
 import DocumentType.domain.service.DocumentTypeService;
 import DocumentType.infrastructure.in.DocumentTypeController;
 import DocumentType.infrastructure.out.DocumentTypeRepository;
+/*import Maintenance.application.DeleteMaintenanceUseCase;
+import Maintenance.application.RegisterMaintenanceUseCase;
+import Maintenance.domain.service.MaintenanceService;*/
 import Menu.MainMenu;
 import Plane.application.CreatePlaneUseCase;
 import Plane.application.DeletePlaneUseCase;
@@ -162,10 +165,14 @@ public class UserController {
                     System.out.println("Registrar Avion");
                     // createFlightReservation();
                     break;
-                case 4:
-                    System.out.println("Registrar Avion");
-                    // registerMaintenanceReview();
-                    break;
+                /*case 4:
+                    System.out.println("Registrar revisión de Mantenimiento");
+                    MaintenanceService maintenanceService = new MaintenanceRepository();
+                    RegisterMaintenanceUseCase registerMaintenanceUseCase = new RegisterMaintenanceUseCase(maintenanceService);
+                    DeleteMaintenanceUseCase deleteMaintenanceUseCase = new DeleteMaintenanceUseCase(maintenanceService);
+                    
+                    
+                    break; */
                 case 5:
                     System.out.println("Registrar Avion");
                     // viewCustomerInformation();

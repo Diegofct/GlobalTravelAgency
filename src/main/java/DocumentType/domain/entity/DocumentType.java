@@ -1,19 +1,20 @@
 package DocumentType.domain.entity;
-
+// Clase "Tipo de Documento"
 public class DocumentType {
     private int idDocumentType;
     private String name;
     private String documentNumber;
-
+    
+    // Empty constructor
     public DocumentType() {
     }
-
+    // FUll constructor
     public DocumentType(int idDocumentType, String name, String documentNumber) {
         this.idDocumentType = idDocumentType;
         this.name = name;
         this.documentNumber = documentNumber;
     }
-
+    // Getters and setters
     public int getIdDocumentType() {
         return idDocumentType;
     }
