@@ -116,20 +116,9 @@ CREATE TABLE Revision (
 );
 
 -- Flight Details
-CREATE TABLE FlightConnection (
-    idFlightConnection INT PRIMARY KEY,
-    connectionNumber VARCHAR(20) NOT NULL,
-    idTrip INT,
-    idPlane INT,
-    idAirport VARCHAR(5),
-    FOREIGN KEY (idTrip) REFERENCES Trip(idTrip),
-    FOREIGN KEY (idPlane) REFERENCES Plane(idPlane),
-    FOREIGN KEY (idAirport) REFERENCES Airport(idAirport)
-);
-
 CREATE TABLE Trip (
     idTrip INT PRIMARY KEY,
-    date DATE,
+    dateTrip DATE,
     price DECIMAL(10, 2),
     originCity VARCHAR(45),
     destinationCity VARCHAR(45)
@@ -142,6 +131,24 @@ CREATE TABLE TripBooking (
     FOREIGN KEY (idTrip) REFERENCES Trip(idTrip)
 );
 
+CREATE TABLE FlightFare (
+    idFlightFare INT PRIMARY KEY,
+    description VARCHAR(20),
+    details VARCHAR(85),
+    value DECIMAL(10, 2)
+);
+
+CREATE TABLE FlightConnection (
+    idFlightConnection INT PRIMARY KEY,
+    connectionNumber VARCHAR(20) NOT NULL,
+    idTrip INT,
+    idPlane INT,
+    idAirport VARCHAR(5),
+    FOREIGN KEY (idTrip) REFERENCES Trip(idTrip),
+    FOREIGN KEY (idPlane) REFERENCES Plane(idPlane),
+    FOREIGN KEY (idAirport) REFERENCES Airport(idAirport)
+);
+
 CREATE TABLE TripBookingDetails (
     idTripBookingDetails INT PRIMARY KEY,
     idTripBooking INT,
@@ -150,13 +157,6 @@ CREATE TABLE TripBookingDetails (
     FOREIGN KEY (idTripBooking) REFERENCES TripBooking(idTripBooking),
     FOREIGN KEY (idCustomer) REFERENCES Customer(idCustomer),
     FOREIGN KEY (idFlightFare) REFERENCES FlightFare(idFlightFare)
-);
-
-CREATE TABLE FlightFare (
-    idFlightFare INT PRIMARY KEY,
-    description VARCHAR(20),
-    details VARCHAR(85),
-    value DECIMAL(10, 2)
 );
 
 CREATE TABLE TripCrew (
