@@ -52,6 +52,13 @@ import Trip.application.UpdateTripUseCase;
 import Trip.domain.service.TripService;
 import Trip.infrastructure.in.TripController;
 import Trip.infrastructure.out.TripRepository;
+import TripBookingDetails.application.CreateTripBookingDetailsUseCase;
+import TripBookingDetails.application.DeleteTripBookingDetailsUseCase;
+import TripBookingDetails.application.ReadTripBookingDetailsUseCase;
+import TripBookingDetails.application.UpdateTripBookingDetailsUseCase;
+import TripBookingDetails.domain.service.TripBookingDetailsService;
+import TripBookingDetails.infrastructure.in.TripBookingDetailsController;
+import TripBookingDetails.infrastructure.out.TripBookingDetailsRepository;
 import User.application.UserUseCase;
 import User.domain.entity.Permission;
 import User.domain.entity.User;
@@ -180,8 +187,15 @@ public class UserController {
                     // assignCrewToJourney();
                     break;
                 case 3:
-                    System.out.println("Registrar Avion");
-                    // createFlightReservation();
+                    System.out.println("Crear Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase = new CreateTripBookingDetailsUseCase(tripBookingDetailsService);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase = new ReadTripBookingDetailsUseCase(tripBookingDetailsService);
+                    TripBookingDetailsController tripBookingDetailsController = new TripBookingDetailsController(createTripBookingDetailsUseCase, deleteTripBookingDetailsUseCase, updateTripBookingDetailsUseCase, readTripBookingDetailsUseCase);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController.createTripBookingDetails();
                     break;
                 case 4:
                     System.out.println("Registrar Avion");
@@ -192,8 +206,15 @@ public class UserController {
                     // viewCustomerInformation();
                     break;
                 case 6:
-                    System.out.println("Registrar Avion");
-                    // viewFlightReservation();
+                    System.out.println("Consultar Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService2 = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase2 = new CreateTripBookingDetailsUseCase(tripBookingDetailsService2);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase2 = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService2);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase2 = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService2);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase2 = new ReadTripBookingDetailsUseCase(tripBookingDetailsService2);
+                    TripBookingDetailsController tripBookingDetailsController2 = new TripBookingDetailsController(createTripBookingDetailsUseCase2, deleteTripBookingDetailsUseCase2, updateTripBookingDetailsUseCase2, readTripBookingDetailsUseCase2);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController2.updateTripBookingDetails();
                     break;
                 case 7:
                     System.out.println("Registrar Cliente");
@@ -225,6 +246,17 @@ public class UserController {
                     AirportController airportController = new AirportController(createAirportUseCase, deleteAirportUseCase, getAirportUseCase, getAllAirportsUseCase, updateAirportUseCase);
                     MainMenu.limpiarPantalla();
                     airportController.createAirport();
+                    break;
+                case 14:
+                    System.out.println("Eliminar Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService4 = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase4 = new CreateTripBookingDetailsUseCase(tripBookingDetailsService4);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase4 = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService4);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase4 = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService4);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase4 = new ReadTripBookingDetailsUseCase(tripBookingDetailsService4);
+                    TripBookingDetailsController tripBookingDetailsController4 = new TripBookingDetailsController(createTripBookingDetailsUseCase4, deleteTripBookingDetailsUseCase4, updateTripBookingDetailsUseCase4, readTripBookingDetailsUseCase4);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController4.deleteTripBookingDetails();
                     break;
                 case 18:
                     System.out.println("Actualizar información del Trayecto");
@@ -335,6 +367,39 @@ public class UserController {
                     DocumentTypeController documentTypeController = new DocumentTypeController(createDocumentTypeUseCase, deleteDocumentTypeUseCase, readDocumentTypeUseCase, updateDocumentTypeUseCase);
                     MainMenu.limpiarPantalla();
                     documentTypeController.createDocumentType();
+                    break;
+                case 43:
+                    System.out.println("Consultar Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService3 = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase3 = new CreateTripBookingDetailsUseCase(tripBookingDetailsService3);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase3 = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService3);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase3 = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService3);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase3 = new ReadTripBookingDetailsUseCase(tripBookingDetailsService3);
+                    TripBookingDetailsController tripBookingDetailsController3 = new TripBookingDetailsController(createTripBookingDetailsUseCase3, deleteTripBookingDetailsUseCase3, updateTripBookingDetailsUseCase3, readTripBookingDetailsUseCase3);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController3.updateTripBookingDetails();
+                    break;
+                case 44:
+                    System.out.println("Eliminar Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService5 = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase5 = new CreateTripBookingDetailsUseCase(tripBookingDetailsService5);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase5 = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService5);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase5 = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService5);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase5 = new ReadTripBookingDetailsUseCase(tripBookingDetailsService5);
+                    TripBookingDetailsController tripBookingDetailsController5 = new TripBookingDetailsController(createTripBookingDetailsUseCase5, deleteTripBookingDetailsUseCase5, updateTripBookingDetailsUseCase5, readTripBookingDetailsUseCase5);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController5.deleteTripBookingDetails();
+                    break;
+                case 45:
+                    System.out.println("Modificar Reserva de vuelo");
+                    TripBookingDetailsService tripBookingDetailsService6 = new TripBookingDetailsRepository();
+                    CreateTripBookingDetailsUseCase createTripBookingDetailsUseCase6 = new CreateTripBookingDetailsUseCase(tripBookingDetailsService6);
+                    DeleteTripBookingDetailsUseCase deleteTripBookingDetailsUseCase6 = new DeleteTripBookingDetailsUseCase(tripBookingDetailsService6);
+                    UpdateTripBookingDetailsUseCase updateTripBookingDetailsUseCase6 = new UpdateTripBookingDetailsUseCase(tripBookingDetailsService6);
+                    ReadTripBookingDetailsUseCase readTripBookingDetailsUseCase6 = new ReadTripBookingDetailsUseCase(tripBookingDetailsService6);
+                    TripBookingDetailsController tripBookingDetailsController6 = new TripBookingDetailsController(createTripBookingDetailsUseCase6, deleteTripBookingDetailsUseCase6, updateTripBookingDetailsUseCase6, readTripBookingDetailsUseCase6);
+                    MainMenu.limpiarPantalla();
+                    tripBookingDetailsController6.updateTripBookingDetails();
                     break;
                 // Agrega los demás casos según los permisos necesarios
                 default:
