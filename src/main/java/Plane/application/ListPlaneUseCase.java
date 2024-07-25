@@ -13,7 +13,7 @@ public class ListPlaneUseCase {
     }
 
     //? cambie el tipo de dato de retorno por una lista de aviones
-    public List<Plane> execute (Plane plane){
+    public List<Plane> execute (){
         return planeService.getAllPlanes();
     }
 }

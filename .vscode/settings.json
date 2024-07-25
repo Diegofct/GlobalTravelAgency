@@ -2,6 +2,7 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.dependency.packagePresentation": "hierarchical",
     "conventionalCommits.scopes": [
-        "AJSUTADO"
+        "AJSUTADO",
+        "Se finalizo la entidad plane"
     ]
 }
