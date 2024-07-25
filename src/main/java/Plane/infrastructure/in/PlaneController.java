@@ -73,5 +73,21 @@ public class PlaneController {
         }
         System.out.println("Avión creado exitosamente.");
     }
+
+    public void deletePlane() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Ingrese el id del Avión que desea eliminar: ");
+            int idPlane = scanner.nextInt();
+            scanner.nextLine();
+    
+            deletePlaneUseCase.deletePlane(idPlane);
+    
+            System.out.println("Avión eliminado exitosamente.");
+        } catch (Exception e) {
+            System.out.println("Error al eliminar el avión: " + e.getMessage());
+        }
+    }
+    
     
 }

@@ -14,7 +14,7 @@ public class DeletePlaneUseCase {
     }
 
     // Method to execute the deletion of a plane
-    public void execute(int idPlane) {
+    public void deletePlane(int idPlane) {
         // Call the deletePlane method on the planeService
         planeService.deletePlane(idPlane);
     }
