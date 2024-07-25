@@ -109,3 +109,210 @@ INSERT INTO RoleHasPermission (idRole, idPermission, validacion) VALUES
 (4, 43, "reserva"), 
 (4, 44, "reserva"), 
 (4, 45, "reserva"); 
+
+-- Inserts for Country
+INSERT INTO Country (idCountry, name) VALUES 
+('US', 'United States'), 
+('CA', 'Canada'), 
+('MX', 'Mexico'), 
+('BR', 'Brazil'), 
+('AR', 'Argentina'), 
+('JP', 'Japan');
+
+-- Inserts for City
+INSERT INTO City (idCity, name, idCountry) VALUES 
+('NYC', 'New York', 'US'), 
+('TOR', 'Toronto', 'CA'), 
+('MEX', 'Mexico City', 'MX'), 
+('SAO', 'Sao Paulo', 'BR'), 
+('BUE', 'Buenos Aires', 'AR'), 
+('TOK', 'Tokyo', 'JP');
+
+-- Inserts for Airport
+INSERT INTO Airport (idAirport, name, idCity) VALUES 
+('JFK', 'John F. Kennedy International Airport', 'NYC'), 
+('YYZ', 'Toronto Pearson International Airport', 'TOR'), 
+('MEX', 'Mexico City International Airport', 'MEX'), 
+('GRU', 'São Paulo/Guarulhos International Airport', 'SAO'), 
+('EZE', 'Ministro Pistarini International Airport', 'BUE'), 
+('HND', 'Tokyo Haneda Airport', 'TOK');
+
+-- Inserts for Gate
+INSERT INTO Gate (idGate, gateNumber, idAirport) VALUES 
+(1, 1, 'JFK'), 
+(2, 2, 'JFK'), 
+(3, 1, 'YYZ'), 
+(4, 2, 'YYZ'), 
+(5, 1, 'MEX'), 
+(6, 2, 'MEX');
+
+-- Inserts for Airline
+INSERT INTO Airline (idAirline, name) VALUES 
+(1, 'American Airlines'), 
+(2, 'Air Canada'), 
+(3, 'Aeromexico'), 
+(4, 'LATAM Airlines'), 
+(5, 'Aerolineas Argentinas'), 
+(6, 'All Nippon Airways');
+
+-- Inserts for AirportHasAirline
+INSERT INTO AirportHasAirline (idAirport, idAirline) VALUES 
+('JFK', 1), 
+('YYZ', 2), 
+('MEX', 3), 
+('GRU', 4), 
+('EZE', 5), 
+('HND', 6);
+
+-- Inserts for PositionEmployee
+INSERT INTO PositionEmployee (idPositionEmployee, positionType) VALUES 
+(1, 'Pilot'), 
+(2, 'Co-Pilot'), 
+(3, 'Flight Attendant'), 
+(4, 'Ground Staff'), 
+(5, 'Maintenance'), 
+(6, 'Manager');
+
+-- Inserts for Employee
+INSERT INTO Employee (idEmployee, name, idPositionEmployee, ingressDate, idAirline, idAirport) VALUES 
+(1, 'Alice Smith', 1, '2020-01-15', 1, 'JFK'), 
+(2, 'Bob Johnson', 2, '2019-03-10', 2, 'YYZ'), 
+(3, 'Charlie Brown', 3, '2021-07-22', 3, 'MEX'), 
+(4, 'David Wilson', 4, '2018-05-18', 4, 'GRU'), 
+(5, 'Eva Davis', 5, '2020-11-29', 5, 'EZE'), 
+(6, 'Frank Miller', 6, '2017-09-14', 6, 'HND');
+
+-- Inserts for Revision
+INSERT INTO Revision (idRevision, revisionDate, idPlane) VALUES 
+(1, '2021-01-10', 1), 
+(2, '2021-02-15', 2), 
+(3, '2021-03-20', 3), 
+(4, '2021-04-25', 4), 
+(5, '2021-05-30', 5), 
+(6, '2021-06-05', 6);
+
+-- Inserts for RevisionEmployee
+INSERT INTO RevisionEmployee (idEmployee, idRevision) VALUES 
+(1, 1), 
+(2, 2), 
+(3, 3), 
+(4, 4), 
+(5, 5), 
+(6, 6);
+
+-- Inserts for RevisionDetails
+INSERT INTO RevisionDetails (idRevisionDetails, description, idEmployee, idRevision) VALUES 
+(1, 'Engine check', 1, 1), 
+(2, 'Fuel system check', 2, 2), 
+(3, 'Hydraulics check', 3, 3), 
+(4, 'Landing gear check', 4, 4), 
+(5, 'Avionics check', 5, 5), 
+(6, 'Cabin inspection', 6, 6);
+
+-- Inserts for Trip
+INSERT INTO Trip (idTrip, dateTrip, price, originCity, destinationCity) VALUES 
+(1, '2021-07-01', 299.99, 'NYC', 'TOR'), 
+(2, '2021-07-05', 399.99, 'TOR', 'MEX'), 
+(3, '2021-07-10', 499.99, 'MEX', 'SAO'), 
+(4, '2021-07-15', 599.99, 'SAO', 'BUE'), 
+(5, '2021-07-20', 699.99, 'BUE', 'TOK'), 
+(6, '2021-07-25', 799.99, 'TOK', 'NYC');
+
+-- Inserts for TripBooking
+INSERT INTO TripBooking (idTripBooking, date, idTrip) VALUES 
+(1, '2021-06-01', 1), 
+(2, '2021-06-05', 2), 
+(3, '2021-06-10', 3), 
+(4, '2021-06-15', 4), 
+(5, '2021-06-20', 5), 
+(6, '2021-06-25', 6);
+
+-- Inserts for FlightFare
+INSERT INTO FlightFare (idFlightFare, description, details, value) VALUES 
+(1, 'Economy', 'Basic economy seat', 99.99), 
+(2, 'Premium Economy', 'Premium economy seat', 199.99), 
+(3, 'Business', 'Business class seat', 299.99), 
+(4, 'First Class', 'First class seat', 399.99), 
+(5, 'Extra Baggage', 'Extra baggage allowance', 49.99), 
+(6, 'Priority Boarding', 'Priority boarding', 29.99);
+
+-- Inserts for FlightConnection
+INSERT INTO FlightConnection (idFlightConnection, connectionNumber, idTrip, idPlane, idAirport) VALUES 
+(1, 'CN001', 1, 1, 'JFK'), 
+(2, 'CN002', 2, 2, 'YYZ'), 
+(3, 'CN003', 3, 3, 'MEX'), 
+(4, 'CN004', 4, 4, 'GRU'), 
+(5, 'CN005', 5, 5, 'EZE'), 
+(6, 'CN006', 6, 6, 'HND');
+
+-- Inserts for TripBookingDetails
+INSERT INTO TripBookingDetails (idTripBookingDetails, idTripBooking, idCustomer, idFlightFare) VALUES 
+(1, 1, 1, 1), 
+(2, 2, 2, 2), 
+(3, 3, 3, 3), 
+(4, 4, 4, 4), 
+(5, 5, 5, 5), 
+(6, 6, 6, 6);
+
+-- Inserts for TripCrew
+INSERT INTO TripCrew (idEmployee, idFlightConnection) VALUES 
+(1, 1), 
+(2, 2), 
+(3, 3), 
+(4, 4), 
+(5, 5), 
+(6, 6);
+
+-- Inserts for DocumentType
+INSERT INTO DocumentType (idDocumentType, name, documentNumber) VALUES 
+(1, 'Passport', 'P123456'), 
+(2, 'ID Card', 'ID123456'), 
+(3, 'Driver License', 'DL123456'), 
+(4, 'Social Security', 'SS123456'), 
+(5, 'Military ID', 'M123456'), 
+(6, 'Visa', 'V123456');
+
+-- Inserts for Customer
+INSERT INTO Customer (idCustomer, name, age, idDocumentType) VALUES 
+(1, 'Alice Smith', 30, 1), 
+(2, 'Bob Johnson', 35, 2), 
+(3, 'Charlie Brown', 25, 3), 
+(4, 'David Wilson', 40, 4), 
+(5, 'Eva Davis', 28, 5), 
+(6, 'Frank Miller', 33, 6);
+
+-- Inserts for Plane
+INSERT INTO Plane (idPlane, plate, capacity, fabricationDate, idModel, idStatus) VALUES 
+(1, 'PL001', 150, '2010-01-01', 1, 1), 
+(2, 'PL002', 200, '2011-02-01', 2, 2), 
+(3, 'PL003', 250, '2012-03-01', 3, 3), 
+(4, 'PL004', 300, '2013-04-01', 4, 4), 
+(5, 'PL005', 350, '2014-05-01', 5, 5), 
+(6, 'PL006', 400, '2015-06-01', 6, 6);
+
+-- Inserts for Model
+INSERT INTO Model (idModel, name, idManufacturer) VALUES 
+(1, 'Boeing 737', 1), 
+(2, 'Airbus A320', 2), 
+(3, 'Embraer 190', 3), 
+(4, 'Bombardier CRJ', 4), 
+(5, 'Boeing 787', 1), 
+(6, 'Airbus A380', 2);
+
+-- Inserts for Manufacturer
+INSERT INTO Manufacturer (idManufacturer, name) VALUES 
+(1, 'Boeing'), 
+(2, 'Airbus'), 
+(3, 'Embraer'), 
+(4, 'Bombardier'), 
+(5, 'Lockheed Martin'), 
+(6, 'Northrop Grumman');
+
+-- Inserts for Status
+INSERT INTO Status (idStatus, name) VALUES 
+(1, 'Active'), 
+(2, 'Inactive'), 
+(3, 'Maintenance'), 
+(4, 'Retired'), 
+(5, 'Scheduled for Maintenance'), 
+(6, 'Decommissioned');
