@@ -14,8 +14,8 @@ public class UpdatePlaneUseCase {
     }
 
     // Method that executes the update plane use case
-    public void execute(Plane plane){
+    public String execute(Plane plane){
         // Call the update plane method on the plane service
-        planeService.updatePlane(plane);
+        return planeService.updatePlane(plane);
     }
 }

@@ -13,7 +13,9 @@ public class CreatePlaneUseCase {
         this.planeService = planeService;
     }
 
-    public void createPlane(Plane plane) {
-        planeService.createPlane(plane);
+    //! Observacion: llamar al metodo execute y no usar la misma palabra clave "createPlane" ya que la aplicacion hace referencia a ello
+    //? Cambiamos el tipo de dato de retorno void por String, ya que lo que retornaremos sera una respuesta
+    public String execute(Plane plane) {
+        return planeService.createPlane(plane);
     }
 }

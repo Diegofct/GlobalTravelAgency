@@ -1,5 +1,7 @@
 package Plane.application;
 
+import java.util.List;
+
 import Plane.domain.entity.Plane;
 import Plane.domain.service.PlaneService;
 
@@ -10,7 +12,8 @@ public class ListPlaneUseCase {
         this.planeService = planeService;
     }
 
-    public void execute (Plane plane){
-        planeService.getAllPlanes();
+    //? cambie el tipo de dato de retorno por una lista de aviones
+    public List<Plane> execute (Plane plane){
+        return planeService.getAllPlanes();
     }
 }
