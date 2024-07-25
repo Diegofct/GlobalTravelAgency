@@ -181,15 +181,9 @@ CREATE TABLE Customer (
 );
 
 -- Plane Details
-CREATE TABLE Plane (
-    idPlane INT PRIMARY KEY,
-    plate VARCHAR(30) NOT NULL,
-    capacity INT,
-    fabricationDate DATE,
-    idModel INT,
-    idStatus INT,
-    FOREIGN KEY (idModel) REFERENCES Model(idModel),
-    FOREIGN KEY (idStatus) REFERENCES Status(idStatus)
+CREATE TABLE Manufacturer (
+    idManufacturer INT PRIMARY KEY,
+    name VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE Model (
@@ -199,12 +193,18 @@ CREATE TABLE Model (
     FOREIGN KEY (idManufacturer) REFERENCES Manufacturer(idManufacturer)
 );
 
-CREATE TABLE Manufacturer (
-    idManufacturer INT PRIMARY KEY,
-    name VARCHAR(45) NOT NULL
-);
-
 CREATE TABLE Status (
     idStatus INT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Plane (
+    idPlane INT PRIMARY KEY,
+    plate VARCHAR(30) NOT NULL,
+    capacity INT,
+    fabricationDate DATE,
+    idModel INT,
+    idStatus INT,
+    FOREIGN KEY (idModel) REFERENCES Model(idModel),
+    FOREIGN KEY (idStatus) REFERENCES Status(idStatus)
 );
