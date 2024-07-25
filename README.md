@@ -1,4 +1,4 @@
-# Proyecto de Gestión de Usuarios y Roles
+# Proyecto Agencia de Vuelo Globales.
 
 Este proyecto es una aplicación de gestión de usuarios y roles implementada en Java utilizando las arquitecturas de **Vertical Slicing** y **Hexagonal Architecture**.
 
