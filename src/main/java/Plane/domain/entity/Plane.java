@@ -31,8 +31,6 @@ public class Plane {
         return idPlane;
     }
 
-
-
     public void setIdPlane(int idPlane) {
         this.idPlane = idPlane;
     }
@@ -76,9 +74,5 @@ public class Plane {
     public void setIdStatus(int idStatus) {
         this.idStatus = idStatus;
     }
-
-    
-    
-
 
 }

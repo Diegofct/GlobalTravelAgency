@@ -14,7 +14,7 @@ import Plane.domain.service.PlaneService;
 public class PlaneRepository implements PlaneService{
 
     @Override
-    public void createPlane(Plane plane) {
+    public String createPlane(Plane plane) {
         String sql = "INSERT INTO Plane (idPlane, plate, capacity, fabricationDate, idModel, idStatus) VALUES (?,?,?,?,?,?)";
         try (Connection connection = DatabaseConfig.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -59,7 +59,7 @@ public class PlaneRepository implements PlaneService{
     }
 
     @Override
-    public void updatePlane(Plane plane) {
+    public String updatePlane(Plane plane) {
         String sql = "UPDATE Plane SET plate = ?, capacity = ?, fabricationDate = ?, idModel = ?, idStatus = ? WHERE idPlane = ?";
         try (Connection connection = DatabaseConfig.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -81,7 +81,7 @@ public class PlaneRepository implements PlaneService{
     }
 
     @Override
-    public void deletePlane(int idPlane) {
+    public String deletePlane(int idPlane) {
         String sql = "DELETE FROM Plane WHERE idPlane = ?";
         try (Connection connection = DatabaseConfig.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
